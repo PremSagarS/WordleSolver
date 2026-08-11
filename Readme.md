@@ -2,6 +2,8 @@
 
 ## Strategy 1
 
+Choose legal candidate with highest entropy.
+
 ### Time (Measure-Command)
 ```
 Days              : 0
@@ -21,6 +23,8 @@ TotalMilliseconds : 16930.1848
 ![Alt text](strat1.png)
 
 ## Strategy 2
+
+Illegal candidates can still be used if they have higher entropy
 
 ### Runtime
 
