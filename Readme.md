@@ -3,7 +3,7 @@
 ## Strategy 1
 
 ### Time (Measure-Command)
-
+```
 Days              : 0
 Hours             : 0
 Minutes           : 0
@@ -15,7 +15,7 @@ TotalHours        : 0.00470282911111111
 TotalMinutes      : 0.282169746666667
 TotalSeconds      : 16.9301848
 TotalMilliseconds : 16930.1848
-
+```
 ### Scores
 
 ![Alt text](strat1.png)
@@ -24,6 +24,7 @@ TotalMilliseconds : 16930.1848
 
 ### Runtime
 
+```
 Days              : 0
 Hours             : 0
 Minutes           : 0
@@ -35,7 +36,7 @@ TotalHours        : 0.0144654202777778
 TotalMinutes      : 0.867925216666667
 TotalSeconds      : 52.075513
 TotalMilliseconds : 52075.513
-
+```
 ### Scores
 
 ![Alt text](strat2.png)
