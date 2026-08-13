@@ -10,6 +10,8 @@ uint8_t **matrix;
 string *guesses;
 string *targets;
 
+unordered_set<int> invalidTargets;
+
 void calcEntropies()
 {
     uint16_t *patternTable = new uint16_t[243]();
@@ -19,7 +21,10 @@ void calcEntropies()
     {
         fill(patternTable, patternTable + 243, 0);
         for (int j = 0; j < TARGET_COUNT; j++)
-            patternTable[matrix[gid][j]] += 1;
+        {
+            if (invalidTargets.find(j) == invalidTargets.end())
+                patternTable[matrix[gid][j]] += 1;
+        }
 
         float sum = 0;
         int totalCount = 0;
@@ -51,6 +56,17 @@ void calcEntropies()
         cout << guesses[idx[i]] << " " << entropies[idx[i]] << "\n";
 
     delete[] idx;
+}
+
+void adjustForResult(uint16_t gid, uint8_t result)
+{
+    for (int tid = 0; tid < TARGET_COUNT; tid++)
+    {
+        if (matrix[gid][tid] != result)
+        {
+            invalidTargets.insert(tid);
+        }
+    }
 }
 
 int main(void)
