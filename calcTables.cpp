@@ -83,8 +83,29 @@ void adjustForResult(uint16_t gid, uint8_t result)
     }
 }
 
+bool shortCircuitBestGuess()
+{
+    if (invalidTargets.size() != (tc - 1))
+        return false;
+
+    result.clear();
+    for (uint16_t i = 0; i < tc; i++)
+    {
+        if (invalidTargets.find(i) == invalidTargets.end())
+        {
+            result.emplace_back(i, targets[i], 0);
+        }
+    }
+    return true;
+}
+
 void calcBestGuesses()
 {
+    if (shortCircuitBestGuess())
+    {
+        return;
+    }
+
     vector<uint16_t> guessIdx{};
     for (uint16_t i = 0; i < gc; i++)
     {

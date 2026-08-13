@@ -9,6 +9,8 @@ void prepareData(string guessesFileName, string targetsFileName, int GUESS_COUNT
 void calcMatrix();
 void calcEntropies();
 void calcBestGuesses();
+void adjustForResult(uint16_t gid, uint8_t result);
+bool shortCircuitBestGuess();
 
 extern vector<tuple<uint16_t, string, float>> result;
 
