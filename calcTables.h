@@ -5,6 +5,8 @@
 
 #include "logicHelpers.h"
 
-uint8_t **calcMatrix(string *guesses, string *targets, int gc, int tc);
+void prepareData(string guessesFileName, string targetsFileName, int GUESS_COUNT, int TARGET_COUNT);
+void calcMatrix();
+float *calcEntropies();
 
 #endif
