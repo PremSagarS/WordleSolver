@@ -11,6 +11,9 @@
 #include <cmath>
 #include <algorithm>
 
+#include <windows.h>
+#include <psapi.h>
+
 using namespace std;
 
 #endif

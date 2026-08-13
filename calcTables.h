@@ -5,6 +5,6 @@
 
 #include "logicHelpers.h"
 
-int **calcMatrix(string *guesses, string *targets, int gc, int tc);
+uint8_t **calcMatrix(string *guesses, string *targets, int gc, int tc);
 
 #endif

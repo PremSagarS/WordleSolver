@@ -3,8 +3,8 @@
 
 #include "libraries.h"
 
-enum class Color;
+enum class Color : uint8_t;
 array<Color, 5> matchWords(const string &guess, const string &target);
-int colorToInt(const array<Color, 5> &result);
+uint8_t colorToInt(const array<Color, 5> &result);
 
 #endif

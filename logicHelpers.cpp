@@ -1,6 +1,6 @@
 #include "logicHelpers.h"
 
-enum class Color
+enum class Color : uint8_t
 {
     GREY,
     YELLOW,
@@ -11,7 +11,7 @@ array<Color, 5> matchWords(const string &guess, const string &target)
 {
     array<Color, 5> result = {Color::GREY, Color::GREY, Color::GREY, Color::GREY, Color::GREY};
 
-    int counts[26] = {0};
+    uint8_t counts[26] = {0};
     for (int i = 0; i < 5; i++)
         counts[target[i] - 'a']++;
 
@@ -39,7 +39,7 @@ array<Color, 5> matchWords(const string &guess, const string &target)
     return result;
 }
 
-int colorToInt(const array<Color, 5> &result)
+uint8_t colorToInt(const array<Color, 5> &result)
 {
     int value = 0;
     for (int i = 0; i < 5; i++)

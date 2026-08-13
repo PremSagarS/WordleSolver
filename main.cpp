@@ -6,11 +6,13 @@ const auto TARGET_FNAME = "guesses.txt";
 const auto GUESS_COUNT = 12972;
 const auto GUESS_FNAME = "guesses.txt";
 
-int **matrix;
+uint8_t **matrix;
+string *guesses;
+string *targets;
 
 void calcEntropies()
 {
-    int *patternTable = new int[243]();
+    uint16_t *patternTable = new uint16_t[243]();
     float *entropies = new float[GUESS_COUNT](); // int -> float
 
     for (int gid = 0; gid < GUESS_COUNT; gid++)
@@ -38,13 +40,11 @@ void calcEntropies()
 
     delete[] patternTable;
 
-    auto guesses = readWords(GUESS_FNAME, GUESS_COUNT); // moved above sort
-
-    int *idx = new int[GUESS_COUNT]; // NEW: index array
+    uint16_t *idx = new uint16_t[GUESS_COUNT]; // NEW: index array
     for (int i = 0; i < GUESS_COUNT; i++)
         idx[i] = i;
     sort(idx, idx + GUESS_COUNT, [&](int a, int b) { // sort indices by entropy
-        return entropies[a] < entropies[b];
+        return entropies[a] > entropies[b];
     });
 
     for (int i = 0; i < GUESS_COUNT; i++)
@@ -55,9 +55,15 @@ void calcEntropies()
 
 int main(void)
 {
-    auto guesses = readWords(GUESS_FNAME, GUESS_COUNT);
-    auto targets = readWords(TARGET_FNAME, TARGET_COUNT);
+    guesses = readWords(GUESS_FNAME, GUESS_COUNT);
+    targets = readWords(TARGET_FNAME, TARGET_COUNT);
 
     matrix = calcMatrix(guesses, targets, GUESS_COUNT, TARGET_COUNT);
     calcEntropies();
+
+    PROCESS_MEMORY_COUNTERS pmc;
+    if (GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc)))
+    {
+        cerr << "Peak mem: " << pmc.PeakWorkingSetSize << endl;
+    }
 }

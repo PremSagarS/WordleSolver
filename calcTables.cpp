@@ -1,11 +1,11 @@
 #include "calcTables.h"
 
-int **calcMatrix(string *guesses, string *targets, int gc, int tc)
+uint8_t **calcMatrix(string *guesses, string *targets, int gc, int tc)
 {
-    int **matrix = new int *[gc];
+    uint8_t **matrix = new uint8_t *[gc];
     for (int i = 0; i < gc; i++)
     {
-        matrix[i] = new int[tc];
+        matrix[i] = new uint8_t[tc];
     }
 
     for (int i = 0; i < gc; i++)
