@@ -2,7 +2,9 @@
 #include "dataLoader.h"
 
 static uint8_t **matrix;
-float *entropies;
+static float *entropies;
+
+vector<tuple<uint16_t, string, float>> result;
 
 static string *guesses;
 static string *targets;
@@ -78,5 +80,30 @@ void adjustForResult(uint16_t gid, uint8_t result)
         {
             invalidTargets.insert(tid);
         }
+    }
+}
+
+void calcBestGuesses()
+{
+    vector<uint16_t> guessIdx{};
+    for (uint16_t i = 0; i < gc; i++)
+    {
+        if (guessIdx.empty())
+            guessIdx.push_back(i);
+        else if (entropies[guessIdx[0]] < entropies[i])
+        {
+            guessIdx.clear();
+            guessIdx.push_back(i);
+        }
+        else if (entropies[guessIdx[0]] == entropies[i])
+        {
+            guessIdx.push_back(i);
+        }
+    }
+    result.clear();
+    result.reserve(guessIdx.size());
+    for (uint16_t idx : guessIdx)
+    {
+        result.emplace_back(idx, guesses[idx], entropies[idx]);
     }
 }

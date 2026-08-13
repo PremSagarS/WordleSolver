@@ -11,10 +11,11 @@ int main(void)
     prepareData(GUESS_FNAME, TARGET_FNAME, GUESS_COUNT, TARGET_COUNT);
     calcMatrix();
     calcEntropies();
+    calcBestGuesses();
 
-    for (int i = 0; i < GUESS_COUNT; i++)
+    for (auto var : result)
     {
-        cout << entropies[i] << endl;
+        cout << get<0>(var) << " " << get<1>(var) << " " << get<2>(var) << endl;
     }
 
     PROCESS_MEMORY_COUNTERS pmc;

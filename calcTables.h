@@ -8,7 +8,8 @@
 void prepareData(string guessesFileName, string targetsFileName, int GUESS_COUNT, int TARGET_COUNT);
 void calcMatrix();
 void calcEntropies();
+void calcBestGuesses();
 
-extern float *entropies;
+extern vector<tuple<uint16_t, string, float>> result;
 
 #endif
