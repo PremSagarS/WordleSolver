@@ -1,11 +1,13 @@
 #include "calcTables.h"
 #include "dataLoader.h"
 
-uint8_t **matrix;
-string *guesses;
-string *targets;
+static uint8_t **matrix;
+float *entropies;
 
-unordered_set<uint16_t> invalidTargets;
+static string *guesses;
+static string *targets;
+
+static unordered_set<uint16_t> invalidTargets;
 
 int gc, tc;
 
@@ -34,10 +36,10 @@ void calcMatrix()
     }
 }
 
-float *calcEntropies()
+void calcEntropies()
 {
     uint16_t *patternTable = new uint16_t[243]();
-    float *entropies = new float[gc](); // int -> float
+    entropies = new float[gc](); // int -> float
 
     for (int gid = 0; gid < gc; gid++)
     {
@@ -66,8 +68,6 @@ float *calcEntropies()
     }
 
     delete[] patternTable;
-
-    return entropies;
 }
 
 void adjustForResult(uint16_t gid, uint8_t result)

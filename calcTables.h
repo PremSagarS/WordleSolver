@@ -7,6 +7,8 @@
 
 void prepareData(string guessesFileName, string targetsFileName, int GUESS_COUNT, int TARGET_COUNT);
 void calcMatrix();
-float *calcEntropies();
+void calcEntropies();
+
+extern float *entropies;
 
 #endif

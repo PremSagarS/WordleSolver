@@ -10,7 +10,7 @@ int main(void)
 {
     prepareData(GUESS_FNAME, TARGET_FNAME, GUESS_COUNT, TARGET_COUNT);
     calcMatrix();
-    auto entropies = calcEntropies();
+    calcEntropies();
 
     for (int i = 0; i < GUESS_COUNT; i++)
     {
